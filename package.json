@@ -1,0 +1,49 @@
+{
+	"private": true,
+	"sideEffects": false,
+	"type": "module",
+	"scripts": {
+		"dev": "react-router dev",
+		"build": "react-router build",
+		"start": "react-router-serve ./build/server/index.js",
+		"typecheck": "react-router typegen && tsc",
+		"format": "biome format --write ."
+	},
+	"dependencies": {
+		"@chakra-ui/react": "^3.1.0",
+		"@electric-sql/pglite": "^0.2.12",
+		"@react-router/fs-routes": "0.0.0-nightly-bf7ecb711-20240911",
+		"@react-router/node": "7.0.0-pre.5",
+		"@react-router/serve": "7.0.0-pre.5",
+		"@tanstack/react-query": "^5.59.19",
+		"date-fns": "^4.1.0",
+		"drizzle-orm": "^0.36.0",
+		"drizzle-zod": "^0.5.1",
+		"isbot": "^5.1.17",
+		"ky": "^1.7.2",
+		"lucide-react": "^0.454.0",
+		"next-themes": "^0.4.3",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"react-icons": "^5.3.0",
+		"react-markdown": "^9.0.1",
+		"react-router": "7.0.0-pre.5",
+		"react-textarea-autosize": "^8.5.4",
+		"rehype-highlight": "^7.0.1",
+		"remark-gfm": "^4.0.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@flydotio/dockerfile": "^0.5.9",
+		"@react-router/dev": "7.0.0-pre.5",
+		"@types/react": "^18.3.12",
+		"@types/react-dom": "^18.3.1",
+		"drizzle-kit": "^0.27.1",
+		"typescript": "^5.6.3",
+		"vite": "^5.4.10",
+		"vite-tsconfig-paths": "^5.1.0"
+	},
+	"engines": {
+		"node": ">=20.0.0"
+	}
+}

@@ -1,40 +1,18 @@
-# Welcome to React Router!
-
-- 📖 [React Router docs](https://reactrouter.com/dev)
-
-## Development
-
-Run the dev server:
-
-```shellscript
-npm run dev
-```
-
-## Deployment
-
-First, build your app for production:
-
-```sh
-npm run build
-```
-
-Then run the app in production mode:
-
-```sh
-npm start
-```
-
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-- `build/server`
-- `build/client`
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+# openchat
+使用cloudflare AI 构建的AI chatbot. 可使用 FLUX 生图
+## 用到了什么
+### 前端
+1. react router v7, prerender
+2. chakra-ui
+3. tanstack query
+4. pglite
+5. drizzle orm
+### 后端
+1. hono
+2. openai sdk
+3. zod
+### 截图
+ <img src="docs/home.png" alt="home">
+ <img src="docs/images_mobile_dark.png" alt="images_mobile_dark">
+ <img src="docs/images_light.png" alt="images_light">
+ <img src="docs/chat.png" alt="chat">

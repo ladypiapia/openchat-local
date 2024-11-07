@@ -1,12 +1,12 @@
-import { Center, HStack, Spinner, Stack, Text, VStack } from "@chakra-ui/react";
+import { HStack, Stack, Text, VStack } from "@chakra-ui/react";
 import { BotIcon, BrushIcon, MessageSquareIcon, UserIcon } from "lucide-react";
 import { Outlet, useLocation, useMatches, useNavigate } from "react-router";
 import { Button } from "~/components/ui/button";
 
 const navigations = [
 	{ href: "/", title: "首页", icon: <MessageSquareIcon /> },
-	{ href: "/images", title: "绘画", icon: <BrushIcon /> },
-	{ href: "/account", title: "我的", icon: <UserIcon /> },
+	{ href: "/images/", title: "绘画", icon: <BrushIcon /> },
+	{ href: "/account/", title: "我的", icon: <UserIcon /> },
 ];
 
 export default function HomeLayout() {
@@ -31,7 +31,7 @@ export default function HomeLayout() {
 				</HStack>
 				{navigations.map((item) => {
 					let isActive = location.pathname === item.href;
-					if (item.href === "/" && location.pathname === "/chat") {
+					if (item.href === "/" && location.pathname === "/chat/") {
 						isActive = true;
 					}
 					return (
@@ -82,12 +82,4 @@ export default function HomeLayout() {
 			</HStack>
 		</Stack>
 	);
-}
-
-export function HydrateFallback() {
-	return (
-		<Center>
-			<Spinner/>
-		</Center>
-	)
 }

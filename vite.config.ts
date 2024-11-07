@@ -5,14 +5,12 @@ import { defineConfig } from "vite";
 export default defineConfig({
 	plugins: [
 		reactRouter({
-			ssr: true,
+			ssr: false,
+			prerender: true,
 		}),
 		tsconfigPaths(),
 	],
 	build: {
 		target: "esnext",
-		rollupOptions: {
-			external: ["localforage"],
-		}
 	},
 });

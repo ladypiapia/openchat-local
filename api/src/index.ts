@@ -76,8 +76,8 @@ app.post("/summarize", async (c) => {
 
 app.post("/images", async (c) => {
 	const data = imageSchema.parse(await c.req.json());
-	// @ts-ignore
 	const response = await c.env.AI.run(
+		// @ts-ignore
 		"@cf/black-forest-labs/flux-1-schnell",
 		{
 			prompt: data.prompt,

@@ -11,11 +11,12 @@ const navigations = [
 
 export default function HomeLayout() {
 	const matches = useMatches();
-	// @ts-ignore
-	const deep = matches.some((match) => match.handle?.deep);
 
 	const location = useLocation();
 	const navigate = useNavigate();
+
+	// @ts-ignore
+	const deep = matches.some((match) => match.handle?.deep);
 
 	return (
 		<Stack flexDir={{ base: "column", md: "row" }} h="dvh">
@@ -25,6 +26,7 @@ export default function HomeLayout() {
 				gap={2}
 				borderRightWidth="1px"
 				borderColor="bg.muted"
+				bgColor="bg.subtle"
 			>
 				<HStack py={4}>
 					<BotIcon />
@@ -34,10 +36,16 @@ export default function HomeLayout() {
 					if (item.href === "/" && location.pathname === "/chat/") {
 						isActive = true;
 					}
+					if (
+						item.href === "/images/" &&
+						location.pathname === "/images/new/"
+					) {
+						isActive = true;
+					}
 					return (
 						<Button
 							key={`nav-${item.href}`}
-							variant={isActive ? "subtle" : "ghost"}
+							variant={isActive ? "ghost" : "ghost"}
 							h="fit"
 							onClick={() => navigate(item.href, { viewTransition: true })}
 						>
@@ -56,6 +64,7 @@ export default function HomeLayout() {
 				display={{ base: deep ? "none" : "flex", md: "none" }}
 				p={2}
 				gap={2}
+				bgColor="bg.subtle"
 			>
 				{navigations.map((item) => {
 					let isActive = location.pathname === item.href;

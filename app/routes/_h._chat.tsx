@@ -2,8 +2,7 @@ import { Stack } from "@chakra-ui/react";
 import { Outlet, useLocation, useSearchParams } from "react-router";
 import { HStack, IconButton, Spacer, Text, VStack } from "@chakra-ui/react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { EllipsisVerticalIcon } from "lucide-react";
-import { LuPlus, LuRefreshCw } from "react-icons/lu";
+import { EllipsisVerticalIcon, PlusIcon, SmileIcon } from "lucide-react";
 import { useNavigate } from "react-router";
 import { eq } from "drizzle-orm";
 import { Button } from "~/components/ui/button";
@@ -17,6 +16,7 @@ import { Skeleton } from "~/components/ui/skeleton";
 import { toaster } from "~/components/ui/toaster";
 import { db, schema } from "~/.client/db";
 import type { Conversation } from "~/drizzle/schema";
+import { EmptyState } from "~/components/ui/empty-state";
 
 export default function ChatLayout() {
 	const queryClient = useQueryClient();
@@ -104,7 +104,7 @@ export default function ChatLayout() {
 					base: location.pathname === "/" ? "flex" : "none",
 					md: "flex",
 				}}
-				p={1}
+				p={2}
 				flexShrink={0}
 				borderRightWidth="1px"
 				borderColor="bg.muted"
@@ -113,21 +113,14 @@ export default function ChatLayout() {
 					<Text fontWeight="bold">会话列表</Text>
 					<Spacer />
 					<Button
-						variant="ghost"
+						variant="subtle"
 						aspectRatio="square"
+						size="sm"
 						loading={createConversationMuration.status === "pending"}
 						onClick={() => createConversationMuration.mutate()}
 					>
-						<LuPlus />
+						<PlusIcon />
 					</Button>
-					<IconButton
-						variant="ghost"
-						onClick={async () => {
-							await queryClient.invalidateQueries();
-						}}
-					>
-						<LuRefreshCw />
-					</IconButton>
 				</HStack>
 				<VStack
 					flex={1}
@@ -146,6 +139,13 @@ export default function ChatLayout() {
 						},
 					}}
 				>
+					{conversations?.length === 0 && (
+						<EmptyState
+							icon={<SmileIcon />}
+							title="暂无会话"
+							description="点击右上角按钮创建一个新会话"
+						/>
+					)}
 					{isConversationsPending && (
 						<>
 							<Skeleton w="full" h={10} />
@@ -162,7 +162,7 @@ export default function ChatLayout() {
 								justifyContent="start"
 								variant={converation.id === conversationId ? "subtle" : "ghost"}
 								onClick={() => {
-									navigate(`/chat?id=${converation.id}`, {
+									navigate(`/chat/?id=${converation.id}`, {
 										viewTransition: true,
 									});
 								}}

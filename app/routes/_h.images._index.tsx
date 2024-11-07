@@ -1,5 +1,4 @@
 import {
-	Heading,
 	HStack,
 	IconButton,
 	Spacer,
@@ -15,11 +14,18 @@ import {
 } from "@chakra-ui/react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { eq } from "drizzle-orm";
-import { DownloadIcon, InfoIcon, PlusIcon, Trash2Icon } from "lucide-react";
+import {
+	DownloadIcon,
+	InfoIcon,
+	PlusIcon,
+	SwatchBookIcon,
+	Trash2Icon,
+} from "lucide-react";
 import { Link } from "react-router";
 import { db, schema } from "~/.client/db";
 import { Button } from "~/components/ui/button";
 import { ClipboardIconButton, ClipboardRoot } from "~/components/ui/clipboard";
+import { EmptyState } from "~/components/ui/empty-state";
 import {
 	PopoverArrow,
 	PopoverBody,
@@ -66,16 +72,29 @@ export default function Images() {
 	}
 
 	return (
-		<VStack flex={1} minH="1">
-			<HStack w="full" px={2} py={1}>
-				<Heading size="md">绘画列表</Heading>
+		<VStack flex={1} minH="0">
+			<HStack w="full" p={2}>
+				<Text fontWeight="bold">绘画列表</Text>
 				<Spacer />
-				<IconButton size="sm" variant="subtle" asChild>
-					<Link to="/images/new" viewTransition>
+				<Button aspectRatio="square" size="sm" variant="subtle" asChild>
+					<Link to="/images/new/" viewTransition>
 						<PlusIcon />
 					</Link>
-				</IconButton>
+				</Button>
 			</HStack>
+			{images?.length === 0 && (
+				<EmptyState
+					icon={<SwatchBookIcon />}
+					title="暂无绘画"
+					description="点击右上角或者下方按钮添加绘画"
+				>
+					<Link to="/images/new/" viewTransition>
+						<Button asChild>
+							<Text>添加绘画</Text>
+						</Button>
+					</Link>
+				</EmptyState>
+			)}
 			{isImagesPending && (
 				<Center h="full">
 					<Spinner />

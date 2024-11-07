@@ -30,7 +30,7 @@ async function getWasmData() {
 export const client = new PGlite({
 	wasmModule: await getWasm(),
 	fsBundle: await getWasmData(),
-	fs: new IdbFs("chatbot"),
+	fs: new IdbFs("openchat"),
 });
 
 await client.exec(`

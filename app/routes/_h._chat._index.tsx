@@ -1,4 +1,4 @@
-import { Center, VStack } from "@chakra-ui/react";
+import { Center } from "@chakra-ui/react";
 import { MessageSquareIcon } from "lucide-react";
 import { EmptyState } from "~/components/ui/empty-state";
 
